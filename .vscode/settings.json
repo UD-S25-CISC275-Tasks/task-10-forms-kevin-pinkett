@@ -1,9 +1,5 @@
 {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-<<<<<<< HEAD
-
-=======
->>>>>>> d582676fbec39ca6b24781f3459611d85cdcaf64
     "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },

@@ -5,15 +5,6 @@ export function EditMode(): React.JSX.Element {
     const [editMode, setMode] = useState<boolean>(false);
     const [name, setName] = useState<string>("Your Name");
     const [isStudent, updateStudent] = useState<boolean>(true);
-    const [message, setMessage] = useState<string>("Your Name is a student");
-
-    function formMessage() {
-        if (isStudent) {
-            setMessage(name.concat("  is a student"));
-        } else {
-            setMessage(name.concat("  is not a student"));
-        }
-    }
 
     return (
         <div>
@@ -25,10 +16,11 @@ export function EditMode(): React.JSX.Element {
                     checked={editMode}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                         setMode(event.target.checked);
-                        formMessage();
                     }}
                 />
                 {editMode && (
+                    <Form.Group>
+                    <Form.Label>Name: </Form.Label>
                     <Form.Control
                         disabled={!editMode}
                         value={name}
@@ -38,7 +30,7 @@ export function EditMode(): React.JSX.Element {
                             setName(event.target.value);
                         }}
                     />
-                )}
+                </Form.Group>)}
                 {editMode && (
                     <Form.Check
                         type="checkbox"
@@ -51,13 +43,15 @@ export function EditMode(): React.JSX.Element {
                         }}
                     />
                 )}
-                <span>
-                    {!editMode &&
-                        (isStudent ?
-                            `${name} is a student`
-                        :   `${name} is not a student`)}
-                </span>
             </Form.Group>
+            <span>
+                {!editMode && (
+                    <span>
+                        {isStudent && <span>{name} is a student</span>}
+                        {!isStudent && <span>{name} is not a student</span>}
+                    </span>
+                )}
+            </span>
         </div>
     );
 }
